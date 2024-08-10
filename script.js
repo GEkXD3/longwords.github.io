@@ -1,5 +1,5 @@
 // Набор слов для генерации длинного слова
-const wordSet = ["metha", "ethan", "butan", "propyl", "aceta", "formi", "benze", "cyclo", "hexan", "pentan", "ethano-", "prop-", "pentanol-"];
+const wordSet = ["metha", "ethan", "butan", "propyl", "aceta", "formi", "benze", "cyclo", "hexan", "pentan"];
 
 
 // Функция для обновления значения ползунка
