@@ -1,5 +1,5 @@
 // Набор слов для генерации длинного слова
-const wordSet = ["metha-", "ethan-", "butan-", "propyl-", "aceta-", "formi-", "benze-", "cyclo-", "hexan-", "pentan-"];
+const wordSet = ["metha", "ethan", "butan", "propyl", "aceta", "formi", "benze", "cyclo", "hexan", "pentan", "ethano-", "prop-", "pentanol-"];
 
 // Функция для обновления значения ползунка
 function updateLengthValue(value) {
@@ -10,14 +10,23 @@ function updateLengthValue(value) {
 function generateWord() {
     const length = parseInt(document.getElementById('lengthRange').value);
     let result = '';
+    let lastWord = '';
 
     while (result.length < length) {
-        const randomWord = wordSet[Math.floor(Math.random() * wordSet.length)];
+        let randomWord;
+
+        // Получаем новое случайное слово, которое не совпадает с предыдущим
+        do {
+            randomWord = wordSet[Math.floor(Math.random() * wordSet.length)];
+        } while (randomWord === lastWord);
+
         if (result.length + randomWord.length <= length) {
             result += randomWord;
+            lastWord = randomWord; // Обновляем последнее добавленное слово
         } else {
             // Если добавление слова превышает нужную длину, добавим часть слова
             result += randomWord.substring(0, length - result.length);
+            break;
         }
     }
 
