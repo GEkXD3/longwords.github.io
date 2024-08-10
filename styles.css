@@ -6,6 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding: 10px; /* Добавлено немного отступа для удобства */
 }
 
 .container {
@@ -14,6 +15,8 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Ограничение ширины контейнера */
+    width: 100%;
 }
 
 h1 {
@@ -51,4 +54,7 @@ button:hover {
     font-size: 20px;
     color: #333;
     min-height: 24px;
+    word-wrap: break-word; /* Позволяет перенести слово на новую строку */
+    white-space: pre-wrap; /* Сохраняет пробелы и позволяет перенесение слов */
+    text-align: left; /* Слева направо для улучшения читаемости */
 }
