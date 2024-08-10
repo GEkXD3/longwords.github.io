@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Long words generator!</title>
+    <title>Генератор слов</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Long words generator!</h1>
-        <label for="lengthRange">Choose word lenght: <span id="lengthValue">500</span> letters</label>
-        <input type="range" id="lengthRange" min="5" max="1000" value="500" oninput="updateLengthValue(this.value)">
-        <button onclick="generateWord()">Create!</button>
+        <h1>Генератор длинных слов</h1>
+        <label for="lengthSlider">Длина слова: <span id="lengthValue">5</span></label>
+        <input type="range" id="lengthSlider" min="5" max="1000" value="5">
+        <button id="generateButton">Создать!</button>
         <div id="output" class="output"></div>
     </div>
     <script src="script.js"></script>
