@@ -13,10 +13,14 @@ function generateWord() {
 
     while (result.length < length) {
         const randomWord = wordSet[Math.floor(Math.random() * wordSet.length)];
-        result += randomWord;
+        if (result.length + randomWord.length <= length) {
+            result += randomWord;
+        } else {
+            // Если добавление слова превышает нужную длину, добавим часть слова
+            result += randomWord.substring(0, length - result.length);
+        }
     }
 
-    result = result.substring(0, length);
     displayWordWithEffect(result);
 }
 
@@ -31,9 +35,9 @@ function displayWordWithEffect(word) {
         if (index < word.length) {
             outputElement.innerText += word[index];
             index++;
-            setTimeout(typeEffect, 50); // Скорость печати (в мс)
+            setTimeout(typeEffect, 20); // Скорость печати (в мс)
         }
     }
 
-    setTimeout(typeEffect, 5000); // Задержка перед началом эффекта (в мс)
+    setTimeout(typeEffect, 250); // Задержка перед началом эффекта (в мс)
 }
