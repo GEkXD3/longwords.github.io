@@ -1,43 +1,43 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const lengthSlider = document.getElementById("lengthSlider");
-    const lengthValue = document.getElementById("lengthValue");
-    const generateButton = document.getElementById("generateButton");
-    const output = document.getElementById("output");
+// Набор слов для генерации длинного слова
+const wordSet = ["metha", "ethan", "butan", "propyl", "aceta", "formi", "benze", "cyclo", "hexan", "pentan"];
 
-    // Предопределенный набор слов длиной 5 символов
-    const wordSet = ["семьс", "шесть", "пять", "групп", "резул", "форма", "квант", "друго"];
+// Функция для обновления значения ползунка
+function updateLengthValue(value) {
+    document.getElementById('lengthValue').innerText = value;
+}
 
-    lengthSlider.addEventListener("input", function() {
-        lengthValue.textContent = lengthSlider.value;
-    });
+// Функция для генерации случайного слова
+function generateWord() {
+    const length = parseInt(document.getElementById('lengthRange').value);
+    let result = '';
 
-    generateButton.addEventListener("click", function() {
-        const targetLength = parseInt(lengthSlider.value);
-        const generatedWord = generateRandomWord(targetLength, wordSet);
-        displayWord(generatedWord);
-    });
-
-    function generateRandomWord(length, words) {
-        let result = "";
-        while (result.length < length) {
-            const randomWord = words[Math.floor(Math.random() * words.length)];
-            if (result.length + randomWord.length <= length) {
-                result += randomWord;
-            }
+    while (result.length < length) {
+        const randomWord = wordSet[Math.floor(Math.random() * wordSet.length)];
+        if (result.length + randomWord.length <= length) {
+            result += randomWord;
+        } else {
+            // Если добавление слова превышает нужную длину, добавим часть слова
+            result += randomWord.substring(0, length - result.length);
         }
-        return result;
     }
 
-    function displayWord(word) {
-        output.textContent = "";
-        let index = 0;
-        
-        const interval = setInterval(() => {
-            output.textContent += word[index];
+    displayWordWithEffect(result);
+}
+
+// Функция для отображения слова с эффектом печати
+function displayWordWithEffect(word) {
+    const outputElement = document.getElementById('output');
+    outputElement.innerText = ''; // Очистка предыдущего результата
+
+    let index = 0;
+
+    function typeEffect() {
+        if (index < word.length) {
+            outputElement.innerText += word[index];
             index++;
-            if (index === word.length) {
-                clearInterval(interval);
-            }
-        }, 1000 / word.length); // Длительность эффекта печатания
+            setTimeout(typeEffect, 50); // Скорость печати (в мс)
+        }
     }
-});
+
+    setTimeout(typeEffect, 5000); // Задержка перед началом эффекта (в мс)
+}
